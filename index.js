@@ -1,27 +1,27 @@
 dataResponse()
 function dataResponse() {
     var progressbar = document.getElementById('progressbar')
+    var status = document.getElementById('status')
+    var statusVal = document.getElementById('statusVal')
 
-    var xhr7 = new XMLHttpRequest();
+    var xhr = new XMLHttpRequest();
     progressbar.style.width = "1%"
-    progressbar.innerText = "Sending Request"
+    statusVal.innerText = "Sending Request"
+    console.log("Sending Request");
 
-    console.log("Sending Request...");
-
-    xhr7.open('GET', 'https://api.covid19api.com/summary', true);
+    xhr.open('GET', 'https://api.covid19api.com/summary', true);
     progressbar.style.width = "10%";
-
-    //On Progress
-    xhr7.onprogress = function onprogress() {
-
-    }
+    statusVal.innerText = "Opening Files"
+    console.log("Opening Files");
 
     //ON LOAD
-
-    xhr7.onload = function (element) {
-        progressbar.style.width = "20%";
-        progressbar.innerText = "Loading Data"
+    xhr.onload = function (element) {
         if (this.status === 200) {
+            console.log(this.responseText);
+
+            progressbar.style.width = "20%";
+            statusVal.innerText = "Loading Data"
+            console.log("Loading Data");
             // console.log(this.responseText);
 
             let json = JSON.parse(this.responseText)
@@ -31,11 +31,11 @@ function dataResponse() {
             let globalData = json.Global;
             let countryData = json.Countries;
             progressbar.style.width = "30%";
-            progressbar.innerText = "Preparing JSON Data"
+            statusVal.innerText = "Preparing JSON Data"
+            console.log("Preparing JSON Data");
 
             if (globalData) {
                 let globalDataDiv = document.getElementById('globalData')
-                // console.log("Getting Data...");
 
                 // console.log(globalData);
 
@@ -47,7 +47,8 @@ function dataResponse() {
                 let globalNewRecovered = globalData.NewRecovered;
 
                 progressbar.style.width = "40%";
-                progressbar.innerText = "Bringing Data for Global"
+                statusVal.innerText = "Bringing Data for Global"
+                console.log("Bringing Data for Global");
 
                 let html = `
                     <div class="card text-white bg-warning  mb-3 my-5 " style="min-width: 20rem;">
@@ -67,7 +68,9 @@ function dataResponse() {
 
                 globalDataDiv.innerHTML += html
                 progressbar.style.width = "50%";
-                progressbar.innerText = "Global Data Puted"
+                statusVal.innerText = "Global Dat Puted"
+                console.log("Global Data Puted");
+
             }
 
             countryData.forEach(function (element, index) {
@@ -94,8 +97,8 @@ function dataResponse() {
                     cardColor = "danger"
                 }
                 progressbar.style.width = "65%";
-                progressbar.innerText = "Preparing Data for Countries"
-
+                statusVal.innerText = "Preparing Data fro Countries"
+                console.log("Preparing Data for Countries");
 
                 let countryHtml = `
                     <div class="card text-white bg-${cardColor} mb-3 my-2 mx-2" style="min-width: 20rem; max-width: 20rem;">
@@ -115,23 +118,28 @@ function dataResponse() {
 
                 countryDataDiv.innerHTML += countryHtml
                 progressbar.style.width = "80%";
-                progressbar.innerText = "Country Data Puted"
+                statusVal.innerText = "Country Data Puted"
+                console.log("Country Data Puted");
 
-                xhr7.send()
+                xhr.send()
                 progressbar.style.width = "90%";
-                progressbar.innerText = "Preparing Cards"
+                statusVal.innerText = "Preparing Cards"
+                console.log("Preparing Cards");
 
                 progressbar.style.width = "100%";
-                progressbar.innerText = "Done"
+                statusVal.innerText = "Done"
+                console.log("Done");
 
                 setTimeout(() => {
                     document.getElementById('progressbardiv').innerHTML = ""
+                    document.getElementById('status').innerHTML = ""
                 }, 1000);
             })
 
         }
         else {
-
+            document.getElementById('progressbardiv').innerHTML = ""
+            statusVal.innerText = "Connection Failed! Try Again..."
         }
     }
 
