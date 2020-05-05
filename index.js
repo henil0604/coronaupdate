@@ -87,7 +87,7 @@ function dataResponse() {
                 }
 
                 let countryHtml = `
-                    <div class="card text-white bg-${cardColor} mb-3 my-2 mx-2" style="min-width: 20rem; max-width: 20rem;">
+                    <div class="card text-white bg-${cardColor} mb-3 my-2 mx-2" style="min-width: 19rem; max-width: 20rem;">
                         <div class="card-header">
                             <h3 class="card-title">${countryName}</h3>
                         </div>
