@@ -12,7 +12,7 @@ function dataResponse() {
     statusVal.innerText = "Sending Request"
     console.log("Sending Request");
 
-    xhr.open('GET', 'https://api.covid19api.com/summary', true);
+    xhr.open('GET', 'https://api.covid19api.com/summar', true);
     progressbar.style.width = "10%";
     statusVal.innerText = "Opening Files"
     console.log("Opening Files");
