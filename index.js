@@ -3,18 +3,25 @@ function dataResponse() {
     var progressbar = document.getElementById('progressbar')
 
     var xhr7 = new XMLHttpRequest();
+    progressbar.style.width = "1%"
+    progressbar.innerText = "Sending Request"
 
     console.log("Sending Request...");
 
     xhr7.open('GET', 'https://api.covid19api.com/summary', true);
+    progressbar.style.width = "10%";
+    progressbar.innerText = "Opening Files"
 
     //On Progress
     xhr7.onprogress = function onprogress() {
+
     }
 
     //ON LOAD
 
     xhr7.onload = function (element) {
+        progressbar.style.width = "20%";
+        progressbar.innerText = "Loading Data"
         if (this.status === 200) {
             // console.log(this.responseText);
 
@@ -24,6 +31,8 @@ function dataResponse() {
 
             let globalData = json.Global;
             let countryData = json.Countries;
+            progressbar.style.width = "30%";
+            progressbar.innerText = "Preparing JSON Data"
 
             if (globalData) {
                 let globalDataDiv = document.getElementById('globalData')
@@ -38,9 +47,11 @@ function dataResponse() {
                 let globalNewDeaths = globalData.NewDeaths;
                 let globalNewRecovered = globalData.NewRecovered;
 
+                progressbar.style.width = "40%";
+                progressbar.innerText = "Bringing Data for Global"
 
                 let html = `
-                    <div class="card text-white bg-info mb-3 my-5 mx-2 " style="min-width: 20rem;">
+                    <div class="card text-white bg-warning  mb-3 my-5 " style="min-width: 20rem;">
                         <div class="card-header">
                             <h3 class="card-title">Global</h3>
                         </div>
@@ -56,10 +67,8 @@ function dataResponse() {
                 `;
 
                 globalDataDiv.innerHTML += html
-
-                setTimeout(() => {
-                    document.getElementById('progressbarDiv').innerHTML = ""
-                }, 1000);
+                progressbar.style.width = "50%";
+                progressbar.innerText = "Global Data Puted"
             }
 
             countryData.forEach(function (element, index) {
@@ -85,9 +94,12 @@ function dataResponse() {
                 else {
                     cardColor = "danger"
                 }
+                progressbar.style.width = "65%";
+                progressbar.innerText = "Preparing Data for Countries"
+
 
                 let countryHtml = `
-                    <div class="card text-white bg-${cardColor} mb-3 my-2 mx-3" style="min-width: 19rem; max-width: 20rem;">
+                    <div class="card text-white bg-${cardColor} mb-3 my-2 mx-2" style="min-width: 20rem; max-width: 20rem;">
                         <div class="card-header">
                             <h3 class="card-title">${countryName}</h3>
                         </div>
@@ -103,7 +115,19 @@ function dataResponse() {
                 `
 
                 countryDataDiv.innerHTML += countryHtml
+                progressbar.style.width = "80%";
+                progressbar.innerText = "Country Data Puted"
 
+                xhr7.send()
+                progressbar.style.width = "90%";
+                progressbar.innerText = "Preparing Cards"
+
+                progressbar.style.width = "100%";
+                progressbar.innerText = "Done"
+
+                setTimeout(() => {
+                    document.getElementById('progressbardiv').innerHTML = ""
+                }, 1000);
             })
 
         }
@@ -111,7 +135,7 @@ function dataResponse() {
 
         }
     }
-    xhr7.send()
+
 }
 
 
