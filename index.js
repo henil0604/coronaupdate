@@ -1,3 +1,6 @@
+var globalDataDiv = document.getElementById('globalData')
+var countryDataDiv = document.getElementById('countryData')
+
 dataResponse()
 function dataResponse() {
     var progressbar = document.getElementById('progressbar')
@@ -17,7 +20,6 @@ function dataResponse() {
     //ON LOAD
     xhr.onload = function (element) {
         if (this.status === 200) {
-            console.log(this.responseText);
 
             progressbar.style.width = "20%";
             statusVal.innerText = "Loading Data"
@@ -35,7 +37,6 @@ function dataResponse() {
             console.log("Preparing JSON Data");
 
             if (globalData) {
-                let globalDataDiv = document.getElementById('globalData')
 
                 // console.log(globalData);
 
@@ -75,7 +76,6 @@ function dataResponse() {
 
             countryData.forEach(function (element, index) {
                 // console.log(element);
-                let countryDataDiv = document.getElementById('countryData')
 
 
                 let countryName = element.Country
@@ -98,7 +98,6 @@ function dataResponse() {
                 }
                 progressbar.style.width = "65%";
                 statusVal.innerText = "Preparing Data fro Countries"
-                console.log("Preparing Data for Countries");
 
                 let countryHtml = `
                     <div class="card text-white bg-${cardColor} mb-3 my-2 mx-2" style="min-width: 20rem; max-width: 20rem;">
@@ -117,23 +116,21 @@ function dataResponse() {
                 `
 
                 countryDataDiv.innerHTML += countryHtml
+
                 progressbar.style.width = "80%";
                 statusVal.innerText = "Country Data Puted"
-                console.log("Country Data Puted");
 
-                xhr.send()
                 progressbar.style.width = "90%";
                 statusVal.innerText = "Preparing Cards"
-                console.log("Preparing Cards");
 
                 progressbar.style.width = "100%";
                 statusVal.innerText = "Done"
-                console.log("Done");
+
+                document.getElementById('progressbarDiv').innerHTML = ""
 
                 setTimeout(() => {
-                    document.getElementById('progressbardiv').innerHTML = ""
                     document.getElementById('status').innerHTML = ""
-                }, 1000);
+                }, 10000);
             })
 
         }
@@ -142,10 +139,26 @@ function dataResponse() {
             statusVal.innerText = "Connection Failed! Try Again..."
         }
     }
+    xhr.send()
 
 }
 
 
 window.addEventListener('error', function () {
     console.log("error")
+    let errorHtml = `
+        <div class="error_container">
+            <h1 class="header">Error!</h1>
+            <p>Oops! Some Thing went Wrong. Reload to solve the Problem!</p>
+        </div>
+    `
+
+    globalDataDiv.innerHTML = ""
+    countryDataDiv.innerHTML = ""
+    document.getElementById('progressbarDiv').innerHTML = ""
+    document.getElementById('status').innerHTML = ""
+
+    globalDataDiv.innerHTML = errorHtml
+
+
 })
