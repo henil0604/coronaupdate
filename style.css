@@ -1,14 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Gaegu&display=swap');
+
 .globalData{
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 70px;
+    transition: 1s;
 }
 
 .countryData{
     display: flex;
     flex-wrap: wrap;
     margin-top: 140px;
+    transition: 1s;
 }
 
 #head{
@@ -17,8 +21,10 @@
     left: 0;
     right: 0;
     z-index: 999999;
+    transition: 1s;
 }
 .status{
+    transition: 1s;
     margin-top: 20px;
     position: absolute;
     left: 43%;
@@ -33,12 +39,36 @@
 }
 .statusVal{
     width: 100px;
+    transition: 1s;
 }
 
+.error_container{
+    transition: 1s;
+    font-family: 'Gaegu', cursive;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+.error_container h1{
+    transition: 1s;
+    font-size: 150px;
+    letter-spacing: 10px;
+    margin-right: 300px;
+    margin-left: 300px;
+    margin-top: 80px;
+    margin-bottom: 0px;
+}
+
+.error_container p{
+    transition: 1s;
+    font-size: 25px;
+}
 
 
 @media only screen and (max-width: 700px){
     .globalData{
+        transition: 1s;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -46,6 +76,7 @@
     }
 
     .countryData{
+        transition: 1s;
         display: flex;
         flex-wrap: wrap;
         margin-top: 100px;
