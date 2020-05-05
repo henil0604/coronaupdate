@@ -18,14 +18,31 @@
     right: 0;
     z-index: 999999;
 }
+.status{
+    margin-top: 20px;
+    position: absolute;
+    left: 43%;
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(92, 153, 245);
+    color: white;
+    text-align: center;
+    border-radius: 23px;
+}
+.statusVal{
+    width: 100px;
+}
 
 
-@media only screen and (max-width: 600px){
+
+@media only screen and (max-width: 700px){
     .globalData{
         display: flex;
         justify-content: center;
         align-items: center;
-        margin-top: 0px;
+        margin-top: 20px;
     }
 
     .countryData{
