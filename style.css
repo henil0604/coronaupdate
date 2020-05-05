@@ -109,8 +109,8 @@
         transition: 1s;
         font-size: 50px;
         letter-spacing: 6px;
-        margin-right: 200px;
-        margin-left: 200px;
+        margin-right: 100px;
+        margin-left: 100px;
         margin-top: 80px;
         margin-bottom: 0px;
     }
@@ -119,6 +119,6 @@
         transition: 1s;
         font-size: 10px;
     }
- 
+
 
 }
