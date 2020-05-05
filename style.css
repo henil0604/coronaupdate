@@ -27,7 +27,7 @@
     transition: 1s;
     margin-top: 20px;
     position: absolute;
-    left: 37%;
+    left: 43%;
     width: 150px;
     display: flex;
     justify-content: center;
@@ -81,5 +81,45 @@
         flex-wrap: wrap;
         margin-top: 100px;
     }
+    
+    .status{
+        transition: 1s;
+        margin-top: 20px;
+        position: absolute;
+        left: 36%;
+        width: 150px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(92, 153, 245);
+        color: white;
+        text-align: center;
+        border-radius: 23px;
+    }
+    
+    .error_container{
+        transition: 1s;
+        font-family: 'Gaegu', cursive;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
+    .error_container h1{
+        transition: 1s;
+        font-size: 50px;
+        letter-spacing: 6px;
+        margin-right: 200px;
+        margin-left: 200px;
+        margin-top: 80px;
+        margin-bottom: 0px;
+    }
+
+    .error_container p{
+        transition: 1s;
+        font-size: 19px;
+    }
+
+    
 
 }
