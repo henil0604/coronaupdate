@@ -10,7 +10,6 @@ function dataResponse() {
 
     xhr7.open('GET', 'https://api.covid19api.com/summary', true);
     progressbar.style.width = "10%";
-    progressbar.innerText = "Opening Files"
 
     //On Progress
     xhr7.onprogress = function onprogress() {
