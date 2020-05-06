@@ -161,20 +161,13 @@ search.addEventListener("input", searchFunction)
 function searchFunction() {
     // console.log(search.value);
     var input, filter, ul, li, a, i, txtValue;
-    console.log("Var");
 
     input = document.getElementById('searchTxt');
     filter = input.value.toUpperCase();
     ul = document.getElementById("countryData");
-    console.log(ul);
-
     li = ul.getElementsByClassName('countryCard')
-    console.log(li);
 
-    console.log(li.length);
-    console.log("before for");
     for (let j = 0; j < li.length; j++) {
-        console.log("after for");
         a = li[j].getElementsByTagName("h3")[0];
         txtValue = a.textContent || a.innerText;
         if (txtValue.toUpperCase().indexOf(filter) > -1) {
