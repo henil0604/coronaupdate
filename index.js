@@ -52,7 +52,7 @@ function dataResponse() {
                 console.log("Bringing Data for Global");
 
                 let html = `
-                    <div class="card text-white bg-warning  mb-3 my-5 " style="min-width: 20rem;">
+                    <div class="card text-white bg-info  mb-3 my-5 " style="min-width: 20rem;">
                         <div class="card-header">
                             <h3 class="card-title">Global</h3>
                         </div>
