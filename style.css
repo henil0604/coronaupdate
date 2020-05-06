@@ -126,6 +126,10 @@
         font-size: 10px;
     }
 
+    .colorMeaning{
+        display: flex; 
+        flex-wrap: wrap;
+    }
 
 }
 
