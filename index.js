@@ -100,7 +100,7 @@ function dataResponse() {
                 statusVal.innerText = "Preparing Data fro Countries"
 
                 let countryHtml = `
-                    <div class="card text-white bg-${cardColor} mb-3 my-2 mx-2" style="min-width: 20rem; max-width: 20rem;">
+                    <div class="card text-white bg-${cardColor} mb-3 my-2 mx-2 countryCard" style="min-width: 21rem; max-width: 20rem;">
                         <div class="card-header">
                             <h3 class="card-title">${countryName}</h3>
                         </div>
@@ -135,8 +135,19 @@ function dataResponse() {
 
         }
         else {
-            document.getElementById('progressbardiv').innerHTML = ""
-            statusVal.innerText = "Connection Failed! Try Again..."
+            let errorHtml = `
+                <div class="error_container">
+                    <h1 class="header">Error!</h1>
+                    <p>Oops! Some Thing went Wrong. Reload to solve the Problem!</p>
+                </div>
+            `
+
+            globalDataDiv.innerHTML = ""
+            countryDataDiv.innerHTML = ""
+            document.getElementById('progressbarDiv').innerHTML = ""
+            document.getElementById('status').innerHTML = ""
+
+            globalDataDiv.innerHTML = errorHtml
         }
     }
     xhr.send()
@@ -144,21 +155,33 @@ function dataResponse() {
 }
 
 
-window.addEventListener('error', function () {
-    console.log("error")
-    let errorHtml = `
-        <div class="error_container">
-            <h1 class="header">Error!</h1>
-            <p>Oops! Some Thing went Wrong. Reload to solve the Problem!</p>
-        </div>
-    `
+let search = document.getElementById('searchTxt')
+search.addEventListener("input", searchFunction)
 
-    globalDataDiv.innerHTML = ""
-    countryDataDiv.innerHTML = ""
-    document.getElementById('progressbarDiv').innerHTML = ""
-    document.getElementById('status').innerHTML = ""
+function searchFunction() {
+    // console.log(search.value);
+    var input, filter, ul, li, a, i, txtValue;
+    console.log("Var");
 
-    globalDataDiv.innerHTML = errorHtml
+    input = document.getElementById('searchTxt');
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("countryData");
+    console.log(ul);
 
+    li = ul.getElementsByClassName('countryCard')
+    console.log(li);
 
-})
+    console.log(li.length);
+    console.log("before for");
+    for (let j = 0; j < li.length; j++) {
+        console.log("after for");
+        a = li[j].getElementsByTagName("h3")[0];
+        txtValue = a.textContent || a.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            li[j].style.display = "block";
+        }
+        else {
+            li[j].style.display = "none";
+        }
+    }
+}
